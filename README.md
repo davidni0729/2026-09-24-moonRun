@@ -86,3 +86,9 @@ Quick Tunnel 不支援 SSE，因此 trycloudflare.com 手機頁使用依序短�
 首頁：https://davidni0729.github.io/2026-09-24-moonRun/
 
 main 更新後，GitHub Actions 自動執行 `node scripts/build-pages.mjs` 並發佈首頁、Logo、背景與 QR 碼。首頁不需本機伺服器即可顯示；手機及大屏入口連至 `site-config.json` 的 `gameBaseUrl`。目前為臨時測試通道，實際遊戲需要本機 Node 與通道持續運行；通道換網址後更新設定並推送即可。QR 指向固定的 Pages 手機入口。管理員金鑰不會寫入公開首頁。
+
+## 雲端部署準備
+
+可用 Dockerfile 或 Node.js Web Service 部署。啟動指令 `npm start`，安裝指令 `npm ci --omit=dev`，健康檢查 `/healthz`。平台可透過 `PORT` 指定監聽埠。設定 `PUBLIC_BASE_URL` 為實際 HTTPS 網址，確保大屏 QR 碼正確。
+
+目前場次存在單一程序記憶體，部署時請使用一個實例，不要啟用多副本；重啟會清除場次。需使用支援持續執行及 SSE 的 Web Service，不能使用僅靜態網頁或短時間函式服務。活動期間應避免自動休眠。部署成功並驗證後才更新 `site-config.json`，將 GitHub Pages 手機及大屏入口切換至新主機。
