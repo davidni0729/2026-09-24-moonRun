@@ -96,3 +96,9 @@ main 更新後，GitHub Actions 自動執行 `node scripts/build-pages.mjs` 並�
 ## Render 雲端遊戲（目前使用）
 
 遊戲已部署至 https://qingxi-moon-run.onrender.com ，新加坡區域、Free 單一 Docker 實例，PUBLIC_BASE_URL 指向同網址。GitHub Pages 入口改為 Render，不再使用本機 Cloudflare Tunnel。手機 /play、大屏 /display、健康檢查 /healthz；控台使用當次啟動日誌的 key，休眠重啟後金鑰及場次會重置。免費方案閒置會休眠，第一次開啟需等待，正式活動建議升級不休眠主機。公開儲存庫模式部署，更新後請在 Render 確認是否需 Manual Deploy。
+
+## 相機與同步更新
+
+手機入場直接請求前鏡頭權限，顯示即時預覽，拍照後可重拍；不提供檔案或相簿選擇。須完成自拍與動作感應才能加入。相機被拒絕時可從網站權限重新允許，再按「開啟相機自拍」。
+
+同步狀態只包含自拍網址，影像獨立載入並快取；後台及等待畫面避免無變化時重建按鈕。加入失敗會恢復按鈕，初始連線顯示等待提示。免費 Render 冷啟動仍存在，程式修改不會取消平台休眠。

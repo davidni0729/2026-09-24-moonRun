@@ -2,10 +2,10 @@ const {chromium}=await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
 import assert from 'node:assert/strict';import {questions} from '../game.mjs';
 const key=process.env.HOST_KEY;assert(key);const origin=process.env.TEST_BASE_URL||'http://localhost:3780';
 const action=async(action,data={})=>{const r=await fetch(origin+'/api/action',{method:'POST',body:JSON.stringify({action,admin:key,...data})});assert(r.ok,await r.clone().text());return r.json();};
-await action('reset');const browser=await chromium.launch({headless:true});const errors=[];
+await action('reset');const browser=await chromium.launch({headless:true,args:['--use-fake-device-for-media-stream','--use-fake-ui-for-media-stream']});const errors=[];
 const display=await browser.newPage({viewport:{width:1440,height:900}});display.on('pageerror',e=>errors.push(e.message));await display.goto(origin+'/display');
 const players=[];
-for(let i=0;i<5;i++){const context=await browser.newContext({viewport:{width:390,height:844}});const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));await page.goto(origin+'/play');await page.locator('#name').fill('測試社友'+(i+1));if(i===0){await page.locator('#photo').setInputFiles('public/assets/avatar.png');await page.waitForTimeout(200);}await page.locator('#motion-mode').click();await page.locator('#join').click();await page.locator('#ready').click();players.push(page);}
+for(let i=0;i<5;i++){const context=await browser.newContext({viewport:{width:390,height:844}});const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));await page.goto(origin+'/play');await page.locator('#name').fill('測試社友'+(i+1));await page.waitForFunction(()=>document.querySelector('#camera-video')?.videoWidth>0);await page.locator('#capture').click();await page.locator('#motion-mode').click();await page.locator('#join').click();await page.locator('#ready').click();players.push(page);}
 await display.screenshot({path:'artifacts/lobby.png'});await players[0].screenshot({path:'artifacts/mobile-ready.png'});
 const sixth=await fetch(origin+'/api/action',{method:'POST',body:JSON.stringify({action:'join',name:'第六人'})});assert.equal(sixth.status,400);
 const denied=await fetch(origin+'/api/action',{method:'POST',body:JSON.stringify({action:'start'})});assert.equal(denied.status,400);
