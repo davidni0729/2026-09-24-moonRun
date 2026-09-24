@@ -92,3 +92,7 @@ main 更新後，GitHub Actions 自動執行 `node scripts/build-pages.mjs` 並�
 可用 Dockerfile 或 Node.js Web Service 部署。啟動指令 `npm start`，安裝指令 `npm ci --omit=dev`，健康檢查 `/healthz`。平台可透過 `PORT` 指定監聽埠。設定 `PUBLIC_BASE_URL` 為實際 HTTPS 網址，確保大屏 QR 碼正確。
 
 目前場次存在單一程序記憶體，部署時請使用一個實例，不要啟用多副本；重啟會清除場次。需使用支援持續執行及 SSE 的 Web Service，不能使用僅靜態網頁或短時間函式服務。活動期間應避免自動休眠。部署成功並驗證後才更新 `site-config.json`，將 GitHub Pages 手機及大屏入口切換至新主機。
+
+## Render 雲端遊戲（目前使用）
+
+遊戲已部署至 https://qingxi-moon-run.onrender.com ，新加坡區域、Free 單一 Docker 實例，PUBLIC_BASE_URL 指向同網址。GitHub Pages 入口改為 Render，不再使用本機 Cloudflare Tunnel。手機 /play、大屏 /display、健康檢查 /healthz；控台使用當次啟動日誌的 key，休眠重啟後金鑰及場次會重置。免費方案閒置會休眠，第一次開啟需等待，正式活動建議升級不休眠主機。公開儲存庫模式部署，更新後請在 Render 確認是否需 Manual Deploy。
