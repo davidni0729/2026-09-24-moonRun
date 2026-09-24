@@ -80,3 +80,9 @@ Quick Tunnel 不支援 SSE，因此 trycloudflare.com 手機頁使用依序短�
 4. 測試沿用五題、答錯暈眩 2 秒、登月與排名規則。空場無法開始。
 
 「五人開始比賽」保留正式規則。「一鍵五人示範」是自動假玩家演示，與真人單人試玩不同。首頁原樣使用使用者提供的清溪扶輪 Logo，保留原色、完整文字與比例。
+
+## 公開首頁（GitHub Pages）
+
+首頁：https://davidni0729.github.io/2026-09-24-moonRun/
+
+main 更新後，GitHub Actions 自動執行 `node scripts/build-pages.mjs` 並發佈首頁、Logo、背景與 QR 碼。首頁不需本機伺服器即可顯示；手機及大屏入口連至 `site-config.json` 的 `gameBaseUrl`。目前為臨時測試通道，實際遊戲需要本機 Node 與通道持續運行；通道換網址後更新設定並推送即可。QR 指向固定的 Pages 手機入口。管理員金鑰不會寫入公開首頁。
