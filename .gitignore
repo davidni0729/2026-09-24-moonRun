@@ -6,3 +6,8 @@ artifacts/
 .https-test/
 
 pages-site/
+
+# Local planning archives are not part of the public game.
+docs/
+progress.md
+嫦娥奔月創意簡報/

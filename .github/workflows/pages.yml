@@ -1,3 +1,4 @@
+# Publish the generic Moon Run homepage and stable player/display entrances.
 name: Publish game homepage
 on:
   push:
