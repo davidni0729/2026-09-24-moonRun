@@ -1,10 +1,10 @@
 import {randomUUID} from 'node:crypto';
 export const questions=[
- {text:'今年清溪的年度主題是什麼？',options:['創造持衡的影響力','創造持久的業績'],correct:0},
- {text:'今年清溪的三大支柱是？',options:['Service、Fellowship、Leadership','吃飯、打球、唱歌'],correct:0},
- {text:'今年社長訂的 KPI 之一是？',options:['每個月的例會都有新朋友來','每個月都換一家飯店開會'],correct:0},
- {text:'社長 Kate 今年是幾歲？',options:['28 歲','18 歲'],correct:1},
- {text:'今年參加清溪例會，最值得帶誰一起來？',options:['還不認識扶輪的新朋友','只帶自己的手機來'],correct:0}
+ {text:'中秋節在農曆哪一天？',options:['八月十五','五月初五'],correct:0},
+ {text:'月亮的光主要來自哪裡？',options:['月亮自己發光','反射太陽光'],correct:1},
+ {text:'月球是地球的什麼？',options:['天然衛星','恆星'],correct:0},
+ {text:'中秋傳說中，玉兔在月宮做什麼？',options:['划龍舟','搗藥'],correct:1},
+ {text:'太陽屬於哪一種天體？',options:['恆星','衛星'],correct:0}
 ];
 export class Game {
  constructor(){this.reset();}
